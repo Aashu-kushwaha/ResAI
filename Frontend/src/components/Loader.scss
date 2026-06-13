@@ -1,0 +1,135 @@
+/* ── Fullscreen ── */
+.loader-fullscreen {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #0d1117;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.loader-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #e6edf3;
+    margin: 0;
+}
+
+.loader-sub {
+    font-size: 0.875rem;
+    color: #7d8590;
+    margin: 0;
+}
+
+/* ── Inline ── */
+.loader-inline {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.loader-inline__text {
+    font-size: 0.875rem;
+    color: #7d8590;
+}
+
+/* ── Spinner ── */
+.loading-spinner {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+}
+
+.loading-spinner--sm {
+    width: 20px;
+    height: 20px;
+}
+
+.loading-spinner__ring {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #ff2d78;
+    animation: spin 1s linear infinite;
+}
+
+.loading-spinner--sm .loading-spinner__ring {
+    border-width: 2px;
+}
+
+.loading-spinner__ring--delay {
+    inset: 8px;
+    border-top-color: rgba(255, 45, 120, 0.4);
+    animation-duration: 1.5s;
+    animation-direction: reverse;
+}
+
+.loading-spinner--sm .loading-spinner__ring--delay {
+    inset: 4px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* ── PDF Overlay ── */
+.pdf-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn 0.2s ease;
+}
+
+.pdf-overlay__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background-color: #161b22;
+    border: 1px solid #2a3348;
+    border-radius: 1rem;
+    padding: 2.5rem 3rem;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.pdf-overlay__title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #e6edf3;
+    margin: 0;
+}
+
+.pdf-overlay__sub {
+    font-size: 0.8rem;
+    color: #7d8590;
+    margin: 0;
+}
+
+.btn-spinner {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #fff;
+    animation: spin 0.7s linear infinite;
+    flex-shrink: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}

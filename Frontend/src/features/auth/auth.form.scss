@@ -1,0 +1,127 @@
+@use "sass:color";
+
+$primary-color: #f00639;
+$bg-color: #0f0f0f;
+$form-bg: #1a1a1a;
+$input-bg: #242424;
+$text-color: #ffffff;
+$text-muted: #aaaaaa;
+$border-color: #333333;
+$border-radius: 0.75rem;
+
+main {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  min-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+input {
+  border: none;
+  outline: none;
+  padding-inline: 0.85rem;
+  padding-block: 0.6rem;
+  border-radius: 0.75rem;
+}
+
+.otp-message {
+  font-size: 0.85rem;
+  color: $text-muted;
+  text-align: center;
+
+  span {
+    color: $primary-color;
+    font-weight: 600;
+  }
+}
+
+.back-button {
+  background-color: transparent;
+  color: $text-muted;
+  border: 1px solid $border-color;
+  width: 100%;
+
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+    opacity: 1;
+  }
+}
+
+.bottom-link {
+  text-align: center;
+  font-size: 0.85rem;
+  color: $text-muted;
+
+  a {
+    color: $primary-color;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  input {
+    flex: 1;
+    padding-right: 4rem;
+  }
+
+  .toggle-password {
+    position: absolute;
+    right: 0.75rem;
+    background: none;
+    border: none;
+    color: $text-muted;
+    font-size: 0.8rem;
+    cursor: pointer;
+    padding: 0;
+
+    &:hover {
+      color: $text-color;
+    }
+  }
+}
+
+.forgot-link {
+  text-align: right;
+  margin-top: -0.5rem;
+  margin-bottom: 0.75rem;
+
+  a {
+    font-size: 0.8rem;
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
