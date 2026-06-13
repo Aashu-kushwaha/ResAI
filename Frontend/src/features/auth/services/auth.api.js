@@ -1,80 +1,83 @@
-import axios from "axios"
-// Repeated task manage by creating instance of repeated code.
-const api = axios.create({
-  baseURL: "",
-  withCredentials: true//Server have enabled to acess the data from cookies and set the data in cookie
-})
+import axios from "axios";
 
-export async function register({fullname,username, email,password,otp}) {
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
+  withCredentials: true,
+});
+
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    console.error("API Error:", error.response?.data || error.message);
+    return Promise.reject(error);
+  }
+);
+
+export async function register({ fullname, username, email, password, otp }) {
   try {
     const response = await api.post("/api/auth/register", {
-     fullname, username, email, password, otp
-    })
-    return response.data
-  }
-  catch (err) {
-    console.log(err)
+      fullname,
+      username,
+      email,
+      password,
+      otp,
+    });
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 }
-// export async function register({fullname,username,email,password,otp}) {
-//   try{
-//     const response = await axios.post("http://localhost:3000/api/auth/register",{
-//       username,email,password,otp//These data is sending from frontend in backend
-//     },{withCredentials:true})//Axios cannot read data from cookie that'swhy i have to write this line by which token can be read.
-//     return response.data
-//   }
-//   catch(err){
-//     console.log(err)
-//   }
-// }
+
 export async function login({ email, password }) {
   try {
     const response = await api.post("/api/auth/login", {
-      email, password//These data is sending from frontend in backend
-    }, { withCredentials: true })
-    return response.data
-  }
-  catch (err) {
-    console.log(err)
+      email,
+      password,
+    });
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 }
+
 export async function logout() {
   try {
-    const response = await api.get("/api/auth/logout", {
-    }, { withCredentials: true })
-    return response.data
-  }
-  catch (err) {
-    console.log(err)
+    const response = await api.get("/api/auth/logout");
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 }
+
 export async function getme() {
   try {
-    const response = await api.get("/api/auth/get-me", {
-    }, { withCredentials: true })
-    return response.data
-  }
-  catch (err) {
-    console.log(err)
+    const response = await api.get("/api/auth/get-me");
+    return response.data;
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 }
 
 export async function forgotPasswordSendOTP({ email }) {
   try {
-      const response = await api.post("/api/auth/forgot-password/send-otp", { email })
-      return response.data
+    const response = await api.post("/api/auth/forgot-password/send-otp", { email });
+    return response.data;
   } catch (err) {
-      console.log(err)
-      throw err
+    console.error(err);
+    throw err;
   }
 }
 
 export async function forgotPasswordReset({ email, otp, newPassword }) {
   try {
-      const response = await api.post("/api/auth/forgot-password/reset", { email, otp, newPassword })
-      return response.data
+    const response = await api.post("/api/auth/forgot-password/reset", { email, otp, newPassword });
+    return response.data;
   } catch (err) {
-      console.log(err)
-      throw err
+    console.error(err);
+    throw err;
   }
 }
