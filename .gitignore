@@ -1,12 +1,19 @@
 # Dependencies
-node_modules/
-**/node_modules/
+node_modules
+**/node_modules
 
-# Environment Variables
+# Production builds
+frontend/dist
+dist
+build
+out
+
+# Environment variables
 .env
-.env.*
-Backend/.env
-Frontend/.env
+.env.local
+.env.*.local
+backend/.env
+frontend/.env
 
 # Logs
 logs
@@ -14,46 +21,26 @@ logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-pnpm-debug.log*
-
-# Build folders
-dist/
-build/
-out/
-dist-ssr/
-
-# Cache
-.cache/
-.parcel-cache/
-.vite/
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# VS Code
-.vscode/*
-!.vscode/extensions.json
-
-# JetBrains IDE
-.idea/
-
-# Temporary files
-*.tmp
-*.temp
-
-# Coverage
-coverage/
-
-# Local config
-*.local
-
-# Package manager
-.pnp
-.pnp.js
 
 # Runtime data
 pids
 *.pid
 *.seed
 *.pid.lock
+
+# Editor directories
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Deployment files
+.vercel
+.render
+.netlify
+dist-ssr
+
+# Optional: Lock files (if you want to keep them)
+# package-lock.json
+# yarn.lock
