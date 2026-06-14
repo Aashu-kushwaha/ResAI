@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../auth.form.scss"
 import { useNavigate, Link } from "react-router"
 
+const BASE_URL = import.meta.env.VITE_API_URL || ""
+
 const Register = () => {
   const navigate = useNavigate()
   const [step, setStep] = useState(1)
@@ -25,10 +27,11 @@ const Register = () => {
     }
     setLoading(true)
     try {
-      const res = await fetch("/api/auth/send-otp", {
+      const res = await fetch(`${BASE_URL}/api/auth/send-otp`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: formData.email })
+        body: JSON.stringify({ email: formData.email }),
+        credentials: "include"
       })
       const data = await res.json()
       if (res.ok) setStep(2)
@@ -45,10 +48,11 @@ const Register = () => {
     if (!formData.otp) { setError("Please enter OTP."); return }
     setLoading(true)
     try {
-      const res = await fetch("/api/auth/register", {
+      const res = await fetch(`${BASE_URL}/api/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData)
+        body: JSON.stringify(formData),
+        credentials: "include"
       })
       const data = await res.json()
       if (res.ok) navigate("/login")

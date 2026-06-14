@@ -6,6 +6,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 }
 
 .loader-content {
@@ -41,6 +42,7 @@
 }
 
 /* ── Spinner ── */
+/* ── Spinner ── */
 .loading-spinner {
     position: relative;
     width: 56px;
@@ -55,7 +57,10 @@
 
 .loading-spinner__ring {
     position: absolute;
-    inset: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
     border-radius: 50%;
     border: 3px solid transparent;
     border-top-color: #ff2d78;
@@ -67,20 +72,25 @@
 }
 
 .loading-spinner__ring--delay {
-    inset: 8px;
+    top: 8px;
+    left: 8px;
+    right: 8px;
+    bottom: 8px;
     border-top-color: rgba(255, 45, 120, 0.4);
     animation-duration: 1.5s;
     animation-direction: reverse;
 }
 
 .loading-spinner--sm .loading-spinner__ring--delay {
-    inset: 4px;
+    top: 4px;
+    left: 4px;
+    right: 4px;
+    bottom: 4px;
 }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
-
 /* ── PDF Overlay ── */
 .pdf-overlay {
     position: fixed;
