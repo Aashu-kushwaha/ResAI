@@ -104,9 +104,11 @@ async function registerUserController(req, res) {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
-      maxAge: 24 * 60 * 60 * 1000  // 1 day in ms
-  })
+      secure: true,
+      sameSite: "none",
+      maxAge: 24 * 60 * 60 * 1000
+    })
+
     res.status(201).json({
       user: { id: user._id, email: user.email, fullname: user.fullname }, token
     })
@@ -148,11 +150,13 @@ async function loginUserController(req, res) {
       { expiresIn: "1d" }
     )
     await emailservice.sendLoginEmail(user.email, user.fullname,)
+
     res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "lax",
-      maxAge: 24 * 60 * 60 * 1000  // 1 day in ms
-  })
+  httpOnly: true,
+  secure: true,
+  sameSite: "none",
+  maxAge: 24 * 60 * 60 * 1000
+})
     return res.status(200).json({
       message: "User loggedIn successfully.",
       user: {
@@ -173,11 +177,18 @@ async function logoutUserController(req, res) {
   const token = req.cookies.token
   if (token) {
     await TokenBlackListModel.create({ token })
-    res.clearCookie("token")
+    res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: "none"
+    })
     return res.status(200).json({
       message: "User loggedOut successfully."
     })
   }
+  return res.status(200).json({
+    message: "Already logged out."
+  })
 }
 /**
  * @route  getMeUserController 
