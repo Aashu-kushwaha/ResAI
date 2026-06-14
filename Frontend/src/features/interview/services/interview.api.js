@@ -1,9 +1,9 @@
 import axios from "axios"
 import Interview from "../pages/interview"
 
-const api =  axios.create({
-  baseURL:"http://localhost:3000",
-  withCredentials:true,
+const api = axios.create({
+  baseURL: import.meta.env.VITE_API_URL || "http://localhost:3000",
+  withCredentials: true
 })
 
 export const generateInterviewReport= async({jobDescription,selfDescription,resumeFile})=>{
